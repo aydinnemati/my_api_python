@@ -4,19 +4,22 @@ from main import app
 client = TestClient(app)
 
 def test_end1_correct():
-    res = client.post("/",
-    json = {"name": "abc", "phone": "09458786631"})
-    assert res.json() == {"name": "abc", "phone": "09458786631"}
+    res = client.post("/adduser/?name=aaabc&phone=09458aaaaaa")
     assert res.status_code == 200
-def test_end1_name_none():
-    res = client.post("/",
-    json = {"name": None, "phone": "09458786631"})
+    assert res.json() == {"Username": "aaabc", "PhoneNumber": "09458aaaaaa"} #change name and phone everytime
+def test_end1_name():
+    res = client.post('/adduser/?name=&phone=09aaaaaaaaa')
+    assert res.json() == {"detail":"Please Enter Your Name"} 
+    assert res.status_code == 400
+def test_end1_phone():
+    res = client.post('/adduser/?name=sadsafsa&phone=')
     assert res.status_code != 200
-def test_end1_phone_wrong():
-    res = client.post("/",
-    json = {"name": "abc", "phone": "1321546"})
-    assert res.status_code != 200
-
+def test_end1_phone2():
+    res = client.post('/adduser/?name=sadsafsa&phone=121351531')
+    assert res.status_code == 422
+def test_end2_read():
+    res = client.get('/read/')
+    assert res.status_code == 200
 def test_end2_correct():
     res = client.get("/div/?a=100&b=2")
     assert res.json() == 50
