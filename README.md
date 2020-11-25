@@ -20,8 +20,8 @@ Use the package manager [pip install pytest-cov](https://pypi.org/project/pytest
 pip install pytest-cov
 ```
 
-and for using models you should [install mysql](https://dev.mysql.com/downloads/installer/).
-after installing mysql,you need to change database and user in code.
+and for using database you should [install mysql](https://dev.mysql.com/downloads/installer/).
+after installing mysql,you need to change connections settings in code its not recommanded but you can make a database named my_api and a user for it named admin with password admin too.
 
 
 ## Usage
